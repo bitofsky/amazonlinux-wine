@@ -15,6 +15,10 @@ RUN tar xvf wine-7.0.tar.xz
 RUN cd wine-7.0 && ./configure --enable-win64 && make && make install
 RUN ln -s /usr/local/bin/wine64 /usr/local/bin/wine
 
+# Cleanup
+RUN rm -rf /wine-installer/*
+RUN dnf clean all && rm -rf /var/cache/dnf
+
 # Confirm Wine 7 installation
 RUN wine --help
 
